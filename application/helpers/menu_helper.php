@@ -40,25 +40,21 @@ if (!defined('BASEPATH'))
  *   'title'=>'', 
  * )
  */
-function save_menu($variables=array())
-{
+function save_menu($variables=array()) {
 
     $mid = FALSE;
 
-    if (empty($variables))
-    {
+    if (empty($variables)) {
         return FALSE;
     }
 
     $variables['machine_name'] = explode(' ', strtolower($variables['title']));
     $variables['machine_name'] = implode('_', $variables['machine_name']);
-    if (!empty($variables['new']) && $variables['new'])
-    {
+    if (!empty($variables['new']) && $variables['new']) {
         $query = db_select('menus');
         $query->condition('machine_name', $variables['machine_name']);
         $cnt = $query->countQuery()->execute()->fetchField();
-        if ($cnt == 0)
-        {
+        if ($cnt == 0) {
             $mid = db_insert('menus')
                     ->fields(
                             array(
@@ -69,8 +65,7 @@ function save_menu($variables=array())
                     )
                     ->execute();
         }
-    } else
-    {
+    } else {
         $mid = db_update('menus')
                 ->fields(array(
                     'title' => $variables['title'],
@@ -84,13 +79,11 @@ function save_menu($variables=array())
     return $mid;
 }
 
-function get_menu($field, $value)
-{
-    $menu = db_select('menus');
+function get_menu($field, $value) {
+    $menu = & db_select('menus');
     $menu->fields('menus');
     $menu->condition($field, $value);
     $menu = $menu->execute()->fetch();
-
     return $menu;
 }
 
@@ -114,19 +107,15 @@ function get_menu($field, $value)
  * 
  * @param type $varibales 
  */
-function menu_links($varibales=array())
-{
+function menu_links($varibales=array()) {
     $menu = get_menu('machine_name', $varibales['menu_name']);
 
-    if (!empty($menu))
-    {
+    if (!empty($menu)) {
         //for link wrappers
-        if (empty($varibales['options']['link_wrapp_open_tag']))
-        {
+        if (empty($varibales['options']['link_wrapp_open_tag'])) {
             $varibales['options']['link_wrapp_open_tag'] = "";
         }
-        if (empty($varibales['options']['link_wrapp_open_tag']))
-        {
+        if (empty($varibales['options']['link_wrapp_open_tag'])) {
             $varibales['options']['link_wrapp_close_tag'] = "";
         }
 
@@ -137,10 +126,8 @@ function menu_links($varibales=array())
         $query->orderBy('ml.weight');
         $result = $query->execute()->fetchAll();
 
-        if (!empty($result))
-        {
-            foreach ($result as $ml)
-            {
+        if (!empty($result)) {
+            foreach ($result as $ml) {
                 //to search and replace tags
                 $search = array('{title}', '{id}');
                 $replace = array($ml->title, $ml->id);
@@ -155,11 +142,9 @@ function menu_links($varibales=array())
 
             //for attributes
             $attributes = (!empty($varibales['attributes'])) ? $varibales['attributes'] : array();
-            if (!empty($attributes['class']))
-            {
+            if (!empty($attributes['class'])) {
                 $attributes['class'] = $menu->machine_name . " " . $attributes['class'];
-            } else
-            {
+            } else {
                 $attributes['class'] = $menu->machine_name;
             }
 
@@ -177,8 +162,7 @@ function menu_links($varibales=array())
  * @param type $varibales
  * @return type 
  */
-function _sub_menu_links($parent_id, $varibales=array())
-{
+function _sub_menu_links($parent_id, $varibales=array()) {
     $query = db_select('menus_links', 'ml');
     $query->fields('ml');
     $query->condition('parent_id', $parent_id);
@@ -186,19 +170,15 @@ function _sub_menu_links($parent_id, $varibales=array())
     $result = $query->execute()->fetchAll();
 
     //for link wrappers
-    if (empty($varibales['options']['link_wrapp_open_tag']))
-    {
+    if (empty($varibales['options']['link_wrapp_open_tag'])) {
         $varibales['options']['link_wrapp_open_tag'] = "";
     }
-    if (empty($varibales['options']['link_wrapp_open_tag']))
-    {
+    if (empty($varibales['options']['link_wrapp_open_tag'])) {
         $varibales['options']['link_wrapp_close_tag'] = "";
     }
 
-    if (!empty($result))
-    {
-        foreach ($result as $ml)
-        {
+    if (!empty($result)) {
+        foreach ($result as $ml) {
             //to search and replace tags
             $search = array('{title}', '{id}');
             $replace = array($ml->title, $ml->id);
@@ -225,8 +205,7 @@ function _sub_menu_links($parent_id, $varibales=array())
  * To get menu links dropdown
  * @return type 
  */
-function menu_links_dropdown()
-{
+function menu_links_dropdown() {
     $output = array();
 
     $query = db_select('menus');
@@ -234,11 +213,9 @@ function menu_links_dropdown()
     $query->orderBy('menus.id');
     $menus = $query->execute()->fetchAll();
 
-    foreach ($menus as $menu)
-    {
+    foreach ($menus as $menu) {
         $output[$menu->title][$menu->id] = "Parent";
-        foreach (_parent_menu_links($menu->id) as $parent_menu_link)
-        {
+        foreach (_parent_menu_links($menu->id) as $parent_menu_link) {
             $output[$menu->title][$menu->id . "-" . $parent_menu_link->id] = $parent_menu_link->title;
             $output[$menu->title] = $output[$menu->title] + _sub_menu_links_dropdown($parent_menu_link->id, $menu->id, '2');
         }
@@ -254,8 +231,7 @@ function menu_links_dropdown()
  * @param type $hayphins
  * @return type 
  */
-function _sub_menu_links_dropdown($parent_id, $menu_id, $hayphins)
-{
+function _sub_menu_links_dropdown($parent_id, $menu_id, $hayphins) {
     $output = array();
     $query = db_select('menus_links', 'ml');
     $query->fields('ml');
@@ -263,8 +239,7 @@ function _sub_menu_links_dropdown($parent_id, $menu_id, $hayphins)
     $query->orderBy('ml.weight');
     $links = $query->execute()->fetchAll();
 
-    foreach ($links as $link)
-    {
+    foreach ($links as $link) {
         $output[$menu_id . "-" . $link->id] = str_repeat("-", $hayphins) . $link->title;
         $hayphins = $hayphins + 2;
         $output = $output + _sub_menu_links_dropdown($link->id, $menu_id, $hayphins);
@@ -278,8 +253,7 @@ function _sub_menu_links_dropdown($parent_id, $menu_id, $hayphins)
  * @param type $menu_id
  * @return array 
  */
-function _parent_menu_links($menu_id)
-{
+function _parent_menu_links($menu_id) {
     $output = array();
 
     $query = db_select('menus_links', 'ml');
@@ -292,12 +266,10 @@ function _parent_menu_links($menu_id)
     return $parent_menu_links;
 }
 
-function menu_links_array($varibales)
-{
+function menu_links_array($varibales) {
     $menu = get_menu('machine_name', $varibales['menu_name']);
 
-    if (!empty($menu))
-    {
+    if (!empty($menu)) {
         $query = db_select('menus_links', 'ml');
         $query->fields('ml');
         $query->condition('menu_id', $menu->id);
@@ -305,10 +277,8 @@ function menu_links_array($varibales)
         $query->orderBy('ml.weight');
         $result = $query->execute()->fetchAll();
 
-        if (!empty($result))
-        {
-            foreach ($result as $ml)
-            {
+        if (!empty($result)) {
+            foreach ($result as $ml) {
                 $list[] = array(
                     'data' => '<a href="' . $ml->title . '">' . $ml->title . '</a>' . _sub_menu_links($ml->id, $varibales),
                 );

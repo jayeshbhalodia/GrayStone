@@ -1,77 +1,123 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
-<html> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Always force latest IE rendering engine & Chrome Frame -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <!-- Mirrored from www.gallyapp.com/tf_themes/weadmin/dashboard_black.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 31 Dec 2003 19:06:20 GMT -->
-    <head> 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <!-- Website Title --> 
         <title><?php echo $title; ?></title>
 
-        <?php
-        echo $styles;
-        echo $scripts;
-        ?>
+        <base href="<?php echo base_url(); ?>" />
+
+        <!-- Mobile Viewport Fix -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Grab Google CDNs jQuery, fall back if necessary -->
+<!--        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>-->
+
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <script type="text/javascript">
+            //            var APPPATH_URI = "<?php //echo APPPATH_URI;      ?>";
+            var SITE_URL = "<?php echo rtrim(site_url(), '/') . '/'; ?>";
+            //            var BASE_URL = "<?php //echo BASE_URL;      ?>";
+            //            var BASE_URI = "<?php //echo BASE_URI;      ?>";
+            var DEFAULT_TITLE = "Weadnub";
+            var DIALOG_MESSAGE = "Are you source you want to delete";
+        </script>
+<!--        <script type="text/javascript">pyro.apppath_uri="' . APPPATH_URI . '";pyro.base_uri="' . BASE_URI . '";</script>-->
+        <?php echo $styles; ?>
+        <?php echo $scripts; ?>
+       
     </head>
+
     <body>
-        <div class="content_wrapper">
+        <noscript>
+        Luxechic requires that JavaScript be turned on for many of the functions to work correctly. Please turn JavaScript on and reload the page.
+        </noscript>
+        
+        <div class="topbar">
+            <div class="topbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="#">Project name</a>
 
-            <!-- Begin header -->
-            <?php echo $region['header']; ?>
-            <!-- End header -->
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li class="dropdown" data-dropdown="dropdown">
+                            <a class="dropdown-toggle" href="#">Dropdown</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Secondary link</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Another link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="pull-right">Logged in as <a href="#">username</a></p>
+                    <ul class="nav secondary-nav">
+                        <li class="dropdown" data-dropdown="dropdown">
+                            <a class="dropdown-toggle" href="#">Dropdown</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Secondary link</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Another link</a></li>
+                            </ul>
+                        </li>
+                </div>
+            </div>
+        </div>
 
-            <!-- Begin left panel -->
-            <?php echo $region['menu']; ?>
-            <!-- End left panel -->
-
-
-            <!-- Begin content -->
-            <div id="content">
-                <div id="shortcuts">
-                    <h6>Shortcuts</h6>
-                        <?php echo $region['shorcuts'] ?>
-                    </div>
+        <div class="row header-bottom">   
+            <header id="main" class="span4">
+                <div id="logo"></div>
+            </header>
+            <div class="span12 header-right">
                 
-                <!-- messages -->
-                <?php if ($this->session->flashdata('warning') != ""): ?>
-                    <div class="alert_warning">
-                        <?php echo $this->session->flashdata('warning'); ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($this->session->flashdata('info') != ""): ?>
-                    <div class="alert_info">
-                        <?php echo $this->session->flashdata('info'); ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($this->session->flashdata('success') != ""): ?>
-                    <div class="alert_success">
-                        <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($this->session->flashdata('error') != ""): ?>
-                    <div class="alert_error">
-                        <?php echo $this->session->flashdata('error'); ?>
-                    </div>
+                <?php if (!empty($region['shortcuts'])): ?>
+                    <?php echo $region['shortcuts']; ?>
                 <?php endif; ?>
                 
-                <div class="inner">
+                <?php if (!empty($region['module'])): ?>
+                    <?php echo $region['module']; ?>
+                <?php endif; ?>
+
+                
+            </div>   
+        </div>    
+
+        <div id="page-wrapper">
+            <section id="sidebar">
+                <?php echo $region['header']; ?>
+                <?php echo $region['navigation']; ?>
+
+                <footer>
+                    Copyright &copy; 2011 Weadmin<br />
+                    Rendered in {elapsed_time} sec. using {memory_usage}.
+                </footer>
+            </section>
+            <section id="content-wrapper">
+
+                <!--<?php if (!empty($region['module'])): ?>
+                    <?php echo $region['module']; ?>
+                <?php endif; ?>
+
+                <?php if (!empty($region['shortcuts'])): ?>
+                    <?php echo $region['shortcuts']; ?>
+                <?php endif; ?>-->
+
+                <?php if (!empty($region['filters'])): ?>
+                    <?php echo $region['filters']; ?>
+                <?php endif; ?>
+
+
+                <?php echo $region['notices']; ?>
+
+                <div id="content">
                     <?php echo $content; ?>
                 </div>
-
-                <br class="clear"/><br class="clear"/>
-
-
-                <!-- Begin footer -->
-                <div id="footer">
-                    &copy; Copyright 2010 by Your Company
-                </div>
-                <!-- End footer -->
-
-
-            </div>
-            <!-- End content -->
+            </section>
         </div>
     </body>
-
-    <!-- Mirrored from www.gallyapp.com/tf_themes/weadmin/dashboard_black.html by HTTrack Website Copier/3.x [XR&CO'2010], Wed, 31 Dec 2003 19:07:39 GMT -->
 </html>

@@ -1,37 +1,53 @@
 <?php
-
+/**
+ * main template
+ */
 $template['template'] = array(
     'region' => array(
+        'buttons' => '',
         'header' => '',
-        'menu' => '',
-        'links' => '',
-        'filters' => '',
-        'shorcuts'=>'',
+        'navigation' => '',
+        'pagination' => '',
+        'sidebar' => '',
+        'shortcuts'=>'',
+        'module' => '',
+        'footer' => '',
+        'filters'=>'',
+        'notices' => '',
     ),
     'metadata' => array(
-        'js' => array(
-            'js/jquery.js',
-//            'js/jquery-ui.js',
-//            'js/jquery.img.preload.js',
-//            'js/hint.js',
-//            'js/visualize/jquery.visualize.js',
-//            'js/jwysiwyg/jquery.wysiwyg.js',
-//            'js/fancybox/jquery.fancybox-1.3.0.js',
-            'js/jquery.tipsy.js',
-//            'js/custom_black.js',
-            'js/treeMenu.js',
-//            'js/jeasy/jquery.easyui.min.js',
-        ),
         'css' => array(
-            'css/black/screen.css',
-            'css/black/datepicker.css',
-            'css/tipsy.css',
-//            'js/visualize/visualize.css',
-//            'js/jwysiwyg/jquery.wysiwyg.css',
-//            'fancybox/jquery.fancybox-1.3.0.css',
             'css/style.css',
-//            'js/jeasy/themes/default/easyui.css',
-//            'js/jeasy/themes/default/icon.css',
+            'css/forms.css',
+            'css/jquery/jquery-ui.css',
+            'css/boostrap/bootstrap.css',
+            ),
+        'js'=>array(
+            'js/jquery/jquery.min.js',
+            'js/jquery/jquery-ui.min.js',
+            'js/jquery/jquery.livequery.min.js',
+            'js/jquery/jquery.uniform.min.js',           
+            'js/functions.js', 
+            'js/filter.js',
+            'css/boostrap/js/bootstrap-dropdown.js',
+        )
+    ),
+);
+
+/**
+ * login template
+ */
+$template['login'] = array(
+    'region' => array(
+        'notices' => '',
+    ),
+    'metadata' => array(
+        'css' => array(
+            'css/style.css',
+            ),
+        'js'=>array(
+            'js/jquery/jquery.js',
+            'js/login.js',
         )
     ),
 );
