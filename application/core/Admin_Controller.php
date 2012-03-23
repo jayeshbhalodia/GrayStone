@@ -16,9 +16,9 @@ class Admin_Controller extends MY_Controller
 
         $this->lang->load('buttons');
 
-        $this->template->set_theme('admin4');
+        $this->template->set_theme('admin');
         $this->template->set_layout('template');
-
+        
         $this->template->set_region('header', 'region/header', '', true, true);
         $this->template->set_region('navigation', 'region/navigation', '', true, true);
         $this->template->set_region('notices', 'region/notices', '', true, true);

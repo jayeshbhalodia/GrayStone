@@ -17,19 +17,15 @@ $template['template'] = array(
     ),
     'metadata' => array(
         'css' => array(
+            'bootstrap/css/bootstrap.min.css',
             'css/style.css',
-            'css/forms.css',
-            'css/jquery/jquery-ui.css',
-            'css/boostrap/bootstrap.css',
+            'css/jquery/jquery-ui.css'
             ),
         'js'=>array(
-            'js/jquery/jquery.min.js',
-            'js/jquery/jquery-ui.min.js',
-            'js/jquery/jquery.livequery.min.js',
-            'js/jquery/jquery.uniform.min.js',           
+            'js/plugins/jquery.min.1.7.js',
+            'bootstrap/js/bootstrap.js',
+            'js/plugins/jquery-ui.min.js',
             'js/functions.js', 
-            'js/filter.js',
-            'css/boostrap/js/bootstrap-dropdown.js',
         )
     ),
 );
@@ -37,17 +33,17 @@ $template['template'] = array(
 /**
  * login template
  */
-$template['login'] = array(
-    'region' => array(
-        'notices' => '',
-    ),
-    'metadata' => array(
-        'css' => array(
-            'css/style.css',
-            ),
-        'js'=>array(
-            'js/jquery/jquery.js',
-            'js/login.js',
-        )
-    ),
-);
+//$template['login'] = array(
+//    'region' => array(
+//        'notices' => '',
+//    ),
+//    'metadata' => array(
+//        'css' => array(
+//            'css/style.css',
+//            ),
+//        'js'=>array(
+//            'js/jquery/jquery.js',
+//            'js/login.js',
+//        )
+//    ),
+//);

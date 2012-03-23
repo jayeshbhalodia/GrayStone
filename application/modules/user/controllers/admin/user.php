@@ -8,8 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author	Graystone Dev Team
  * @Module	User
  */
-class User extends Admin_Controller
-{
+class User extends Admin_Controller {
 
     /**
      * User Validation     
@@ -37,8 +36,7 @@ class User extends Admin_Controller
         ),
     );
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
         //load model
@@ -64,13 +62,11 @@ class User extends Admin_Controller
         $this->template->set_region('shortcuts', 'user/admin/region/shortcuts', $this->data);
     }
 
-    public function index()
-    {
+    public function index() {
         $q = $this->users_m->select();
         $q->fields('users');
 
-        if ($this->input->post('username'))
-        {
+        if ($this->input->post('username')) {
             $q->condition('users.username', '%' . $this->input->post('username') . '%', 'LIKE');
         }
 
@@ -83,8 +79,7 @@ class User extends Admin_Controller
         $this->data['pagination'] = $this->ajax_pagination->create_links();
 
         $q->range(0, 5);
-        if ($this->input->post('page'))
-        {
+        if ($this->input->post('page')) {
             $q->range($this->input->post('page'), 5);
         }
 
@@ -99,13 +94,11 @@ class User extends Admin_Controller
         $this->template->render();
     }
 
-    public function add()
-    {
+    public function add() {
         // Set the validation rules
         $this->form_validation->set_rules($this->user_validation);
 
-        if ($this->form_validation->run() !== FALSE)
-        {
+        if ($this->form_validation->run() !== FALSE) {
             $post_value = $this->input->post();
 
             $post_value['created'] = time();
@@ -115,36 +108,29 @@ class User extends Admin_Controller
 
             unset($post_value['passwrodconf'], $post_value['save']);
 
-            if ($id = $this->users_m->insert($post_value))
-            {
-                if ($this->input->post('save') == "save")
-                {
+            if ($id = $this->users_m->insert($post_value)) {
+                if ($this->input->post('save') == "save") {
                     $this->session->set_flashdata('success', 'User added successfully.');
                     redirect($this->data['module'] . '/add');
                 }
 
-                if ($this->input->post('save') == "save&exit")
-                {
+                if ($this->input->post('save') == "save&exit") {
                     $this->session->set_flashdata('success', 'User added successfully.');
                     redirect($this->data['module']);
                 }
-            } else
-            {
+            } else {
                 $this->session->set_flashdata('error', 'User can not be created. Please try again !');
                 redirect($this->data['module'] . '/add');
             }
-        } else
-        {
+        } else {
             // Dirty hack that fixes the issue of having to re-add all data upon an error
-            if ($_POST)
-            {
+            if ($_POST) {
                 $member = (object) $_POST;
             }
         }
 
         // Loop through each validation rule
-        foreach ($this->user_validation as $rule)
-        {
+        foreach ($this->user_validation as $rule) {
             $member->{$rule['field']} = set_value($rule['field']);
         }
 
@@ -156,10 +142,8 @@ class User extends Admin_Controller
         $this->template->render();
     }
 
-    public function edit($id)
-    {
-        if (empty($id))
-        {
+    public function edit($id) {
+        if (empty($id)) {
             $this->session->set_flashdata('error', 'User not found');
             redirect($this->data['module']);
         }
@@ -176,38 +160,31 @@ class User extends Admin_Controller
         // Set the validation rules
         $this->form_validation->set_rules($this->user_validation);
 
-        if ($this->form_validation->run() !== FALSE)
-        {
+        if ($this->form_validation->run() !== FALSE) {
             $post_value = $this->input->post();
             $post_value['updated'] = time();
 
             unset($post_value['passwrodconf'], $post_value['hdn_id']);
             unset($post_value['save']);
 
-            if ($last_id = $this->users_m->update($post_value, array(array('id', $id))))
-            {
-                if ($this->input->post('save') == "save")
-                {
+            if ($last_id = $this->users_m->update($post_value, array(array('id', $id)))) {
+                if ($this->input->post('save') == "save") {
 
                     $this->session->set_flashdata('success', 'User updated successfully.');
                     redirect($this->data['module'] . '/edit/' . $id);
                 }
 
-                if ($this->input->post('save') == "save&exit")
-                {
+                if ($this->input->post('save') == "save&exit") {
                     $this->session->set_flashdata('success', 'User updated successfully.');
                     redirect($this->data['module']);
                 }
-            } else
-            {
+            } else {
                 $this->session->set_flashdata('error', 'User updated can not be updated. Please try again !');
                 redirect($this->data['module'] . '/edit/' . $id);
             }
-        } else
-        {
+        } else {
             // Dirty hack that fixes the issue of having to re-add all data upon an error
-            if ($_POST)
-            {
+            if ($_POST) {
                 $member = (object) $_POST;
             }
         }
@@ -224,12 +201,9 @@ class User extends Admin_Controller
      *
      * @param type $id 
      */
-    public function delete($id)
-    {
-        if (isset($id) && $id != '')
-        {
-            if ($this->users_m->delete(array(array('id', $id))))
-            {
+    public function delete($id) {
+        if (isset($id) && $id != '') {
+            if ($this->users_m->delete(array(array('id', $id)))) {
                 $this->session->set_flashdata('success', 'User deleted successfully');
                 redirect($this->data['module']);
             }
@@ -242,23 +216,18 @@ class User extends Admin_Controller
     /**
      * delete all selected users
      */
-    public function delete_all()
-    {
-        if ($this->input->post('action_to') != false && is_array($this->input->post('action_to')) && count($this->input->post('action_to')) > 0)
-        {
+    public function delete_all() {
+        if ($this->input->post('action_to') != false && is_array($this->input->post('action_to')) && count($this->input->post('action_to')) > 0) {
             unset($_POST['save']);
 
             $in_data = $this->input->post('action_to');
 
-            if ($this->users_m->delete_many($in_data))
-            {
+            if ($this->users_m->delete_many($in_data)) {
                 $this->session->set_flashdata('success', 'User deleted successfully');
-            } else
-            {
+            } else {
                 $this->session->set_flashdata('error', 'User deleting error');
             }
-        } else
-        {
+        } else {
             $this->session->set_flashdata('error', 'User deleting error');
         }
 

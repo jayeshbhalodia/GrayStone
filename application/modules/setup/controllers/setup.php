@@ -8,18 +8,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author	Graystone Dev Team
  * @Module	User
  */
-class Setup extends Admin_Controller
-{
+class Setup extends Admin_Controller {
 
     var $talbes = array();
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
     }
 
-    function index()
-    {
+    function index() {
         
     }
 

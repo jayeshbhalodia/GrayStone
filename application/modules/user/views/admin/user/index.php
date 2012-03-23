@@ -5,7 +5,7 @@
         <table border="0" class="table table-striped">
             <thead>
                 <tr>
-                    <th with="30" class="align-center"><?php echo form_checkbox(array('name' => 'action_to_all', 'class' => 'check-all')); ?></th>
+                    <th with="30" class="align-center"><?php echo form_checkbox(array('name' => 'action_to_all', 'id' => 'check-all-action')); ?></th>
                     <th>Username</th>
                     <th>Mail Id</th>
                     <th>Created On</th>
@@ -15,7 +15,7 @@
             <tfoot>
                 <tr>
                     <td colspan="8">
-                        <div class="inner"><?php //$this->load->view('admin/partials/pagination', $pagination);       ?></div>
+                        <div class="inner"><?php //$this->load->view('admin/partials/pagination', $pagination);        ?></div>
                     </td>
                 </tr>
             </tfoot>

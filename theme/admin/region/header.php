@@ -4,6 +4,9 @@
 		</header>-->
 <!--		<section id="user-links">
 			Hell Admin 
-			<?php echo ' | '.anchor('edit-profile', 'Edit Profile') ?><br />
-			<?php echo anchor('', 'View Website', 'target="_blank"'); ?> | <?php echo anchor('admin/logout', 'Logout'); ?>
+<?php echo ' | ' . anchor('edit-profile', 'Edit Profile') ?><br />
+<?php echo anchor('', 'View Website', 'target="_blank"'); ?> | <?php echo anchor('admin/logout', 'Logout'); ?>
 		</section>-->
+<div class="sidebar left">
+    asdf asf
+</div>

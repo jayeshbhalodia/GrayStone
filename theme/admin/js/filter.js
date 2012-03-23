@@ -12,12 +12,12 @@
 		 * Constructor
 		 */
 		init: function(){
-
+                       
 			$('a.cancel').button();
 
 			//listener for select elements
 			$('select', pyro.filter.$filter_form).live('change', function(){
-
+                              
 				//build the form data
 				form_data = pyro.filter.$filter_form.serialize();
 
@@ -27,10 +27,10 @@
 
 			//listener for keywords
 			$('input[type="text"]', pyro.filter.$filter_form).live('keyup', $.debounce(500, function(){
-
+                              
 				//build the form data
 				form_data = pyro.filter.$filter_form.serialize();
-
+                                
 				pyro.filter.do_filter(pyro.filter.f_module, form_data);
 			
 			}));
@@ -67,16 +67,18 @@
 	
 		//launch the query based on module
 		do_filter: function(module, form_data, url){
+                       
 			form_action	= pyro.filter.$filter_form.attr('action');
 			post_url	= form_action ? form_action : SITE_URL + 'admin/' + module;
-
+                        
 			if (typeof url !== 'undefined'){
 				post_url = url;
 			}
-
+                        
 			pyro.clear_notifications();
-
+                        
 			pyro.filter.$content.fadeOut('fast', function(){
+                               
 				//send the request to the server
 				$.post(post_url, form_data, function(data, response, xhr) {
 					

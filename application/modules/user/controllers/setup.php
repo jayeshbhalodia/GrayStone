@@ -8,13 +8,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author	Graystone Dev Team
  * @Module	User
  */
-class Setup extends Admin_Controller
-{
+class Setup extends Admin_Controller {
 
     var $talbes = array();
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
 
         $this->tables['users2'] = "
@@ -34,12 +32,9 @@ class Setup extends Admin_Controller
     /**
      * for installation
      */
-    function install()
-    {
-        if (!empty($this->tables))
-        {
-            foreach ($this->tables as $table)
-            {
+    function install() {
+        if (!empty($this->tables)) {
+            foreach ($this->tables as $table) {
                 db_query($table)->execute();
             }
         }
@@ -48,32 +43,28 @@ class Setup extends Admin_Controller
     /**
      * for uninstallation
      */
-    function uninstall()
-    {
+    function uninstall() {
         
     }
 
     /**
      * information of the module
      */
-    function _info()
-    {
+    function _info() {
         
     }
 
     /**
      * for storing all menus
      */
-    function _menus()
-    {
+    function _menus() {
         
     }
 
     /**
      * for storing all menus
      */
-    function _permissions()
-    {
+    function _permissions() {
         
     }
 

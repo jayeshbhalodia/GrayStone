@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
@@ -7,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author	Graystone Dev Team
  * @Module	User
  */
-class Users_m extends MY_Model
-{
+class Users_m extends MY_Model {
     
 }

@@ -1,55 +1,22 @@
 <?php
-$menu_html = '';
 
-//menu array
-$menu = array(
-    'dashboard' => array('url' => base_url(), 'value' => 'Dashboard'),
-    'block' => array('url' => base_url(), 'value' => 'Block'),
-    'content' => array(
-        'url' => '#',
-        'value' => 'Content',
-        'sub' => array(
-            'page' => array('url' => '#', 'value' => 'Page'),
-            'menu' => array('url' => '#', 'value' => 'Menu'),
-        )
-    ),
-    'user' => array('url' => 'user/admin/user', 'value' => 'User'),
+$items = array(
+    array('data' => '<a href="#"><i class="icon-home icon-white"></i> Home</a>', 'attributes' => array('class' => 'active')),
+    array('data' => '<i class="icon-book"></i>Content Manage', 'attributes' => array('class' => 'nav-header')),
+    array('data' => '<a href="#">Pages</a>'),
+    array('data' => '<i class="icon-user"></i>User', 'attributes' => array('class' => 'nav-header')),
+    array('data' => '<a href="'.base_url().'user/admin/user">Users</a>'),
+    array('data' => '<i class="icon-th-list"></i>Menu', 'attributes' => array('class' => 'nav-header')),
+    array('data' => '<a href="'.base_url().'menu/admin/menu">Menus</a>'),
+);
+$attributes = array(
+    'class' => 'nav nav-list'
+);
+$options = array(
+    'items_open_tag' => '<div style="padding: 8px 0;" class="well">',
+    'items_close_tag' => '</div>',
 );
 
-// display menu
-foreach ($menu as $key => $val)
-{
-    $current_top = "";
-    if ($this->config->item('top_menu') == $key)
-    {
-        $current_top = "current";
-    }
+echo item_list($items, $attributes, $options);
 
-    if (isset($val['sub']))
-    {
-        $menu_html.="<li>";
-        $menu_html.="<a class='top-link " . $current_top . "' href='" . $val['url'] . "'>" . $val['value'] . "</a>";
-        $menu_html.="<ul>";
-        foreach ($val['sub'] as $key_sub => $val_sub)
-        {
-            $current_sub="";
-            if ($this->config->item('sub_menu') == $key_sub)
-            { 
-                $current_sub = "current";
-            }
-
-            $menu_html.="<li><a class='" . $current_sub . "' href='" . $val_sub['url'] . "'>" . $val_sub['value'] . "</a></li>";
-        }
-        $menu_html.="</ul>";
-        $menu_html.="</li>";
-    } else
-    {
-        $menu_html.="<li><a class='top-link " . $current_top . " no-submenu' href='" . $val['url'] . "'>" . $val['value'] . "</a></li>";
-    }
-}
 ?>
-<nav id="main-nav">
-    <ul>
-        <?php print $menu_html; ?>
-    </ul>
-</nav>

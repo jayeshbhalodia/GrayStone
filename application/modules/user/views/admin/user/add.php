@@ -33,7 +33,6 @@
     </div>    
     <hr>
     <div class="well">
-
         <button class="btn primary" name="save" type="submit" value="save">Save</button>
         <button class="btn primary" name="save" type="submit" value="save&exit">Save & Exit</button>
         <?php echo anchor($module, 'Cancel', array('class' => "btn")); ?>

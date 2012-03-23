@@ -15,18 +15,15 @@
  * @copyright Copyright (c) 2009, Jamie Rumbelow <http://jamierumbelow.net>
  */
 //  CI 2.0 Compatibility
-if (!class_exists('CI_Model'))
-{
+if (!class_exists('CI_Model')) {
 
-    class CI_Model extends Model
-    {
+    class CI_Model extends Model {
         
     }
 
 }
 
-class MY_Model extends CI_Model
-{
+class MY_Model extends CI_Model {
 
     /**
      * The database table to use, only
@@ -35,6 +32,7 @@ class MY_Model extends CI_Model
      * @var string
      */
     protected $_table;
+
     /**
      * The primary key, by default set to
      * `id`, for use in some functions.
@@ -42,6 +40,7 @@ class MY_Model extends CI_Model
      * @var string
      */
     protected $primary_key = 'id';
+
     /**
      * An array of functions to be called before
      * a record is created.
@@ -49,6 +48,7 @@ class MY_Model extends CI_Model
      * @var array
      */
     protected $before_create = array();
+
     /**
      * An array of functions to be called after
      * a record is created.
@@ -56,12 +56,14 @@ class MY_Model extends CI_Model
      * @var array
      */
     protected $after_create = array();
+
     /**
      * An array of validation rules
      *
      * @var array
      */
     protected $validate = array();
+
     /**
      * Skip the validation
      *
@@ -77,8 +79,7 @@ class MY_Model extends CI_Model
      * @return void
      * @author Jamie Rumbelow
      */
-    public function MY_Model()
-    {
+    public function MY_Model() {
         $this->__construct();
     }
 
@@ -88,23 +89,19 @@ class MY_Model extends CI_Model
      *
      * @author Jamie Rumbelow
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->helper('inflector');
         $this->_fetch_table();
     }
 
-    public function __call($method, $arguments)
-    {
+    public function __call($method, $arguments) {
         $db_method = array($this->db, $method);
 
-        if (is_callable($db_method))
-        {
+        if (is_callable($db_method)) {
             $result = call_user_func_array($db_method, $arguments);
 
-            if (is_object($result) && $result === $this->db)
-            {
+            if (is_object($result) && $result === $this->db) {
                 return $this;
             }
 
@@ -118,19 +115,16 @@ class MY_Model extends CI_Model
      * to select the table and write query
      *
      */
-    public function select()
-    {
+    public function select() {
         $q = db_select($this->_table);
         return $q;
     }
 
-    public function get($id='')
-    {
-        if ($id != "")
-        {
+    public function get($id='') {
+        if ($id != "") {
             $q = db_select($this->_table);
             $q->fields($this->_table);
-            $q->condition('id',$id);
+            $q->condition('id', $id);
             $result = $q->execute()->fetch();
 
             return $result;
@@ -147,8 +141,7 @@ class MY_Model extends CI_Model
      * @author Jamie Rumbelow
      * @modified Dan Horrigan
      */
-    public function insert($data)
-    {
+    public function insert($data) {
         $id = db_insert($this->_table)
                 ->fields($data)
                 ->execute();
@@ -164,8 +157,7 @@ class MY_Model extends CI_Model
      * @return bool
      * @author Jamie Rumbelow
      */
-    public function update($data, $conditions=array())
-    {
+    public function update($data, $conditions=array()) {
         $num_updated = db_update($this->_table)
                 ->fields($data);
 
@@ -184,8 +176,7 @@ class MY_Model extends CI_Model
      * @return bool
      * @author Jamie Rumbelow
      */
-    public function delete($conditions)
-    {
+    public function delete($conditions) {
         $num_deleted = db_delete($this->_table);
 
         $num_updated = $this->_fetch_conditions($num_deleted, $conditions);
@@ -195,22 +186,15 @@ class MY_Model extends CI_Model
         return $num_deleted;
     }
 
-    private function _fetch_conditions($queryobject, $conditions)
-    {
-        if (is_object($queryobject))
-        {
-            if (!empty($conditions))
-            {
+    private function _fetch_conditions($queryobject, $conditions) {
+        if (is_object($queryobject)) {
+            if (!empty($conditions)) {
 
-                foreach ($conditions as $key => $val)
-                {
-                    if (!empty($val))
-                    {
-                        if (isset($val[2]))
-                        {
+                foreach ($conditions as $key => $val) {
+                    if (!empty($val)) {
+                        if (isset($val[2])) {
                             $queryobject->condition($val[0], $val[1], $val[2]);
-                        } else
-                        {
+                        } else {
                             $queryobject->condition($val[0], $val[1]);
                         }
                     }
@@ -221,26 +205,22 @@ class MY_Model extends CI_Model
         return $queryobject;
     }
 
-    function dropdown()
-    {
+    function dropdown() {
         $args = & func_get_args();
 
-        if (count($args) == 2)
-        {
+        if (count($args) == 2) {
             list($key, $value) = $args;
-        } else
-        {
+        } else {
             $key = 'id';
             $value = $args[0];
         }
 
-        $q=db_select($this->_table);
-        $q->fields($this->_table,array($key,$value));
-        $result=$q->execute()->fetchAll();
-        
+        $q = db_select($this->_table);
+        $q->fields($this->_table, array($key, $value));
+        $result = $q->execute()->fetchAll();
+
         $options = array();
-        foreach ($result as $row)
-        {
+        foreach ($result as $row) {
             $options[$row->{$key}] = $row->{$value};
         }
 
@@ -253,10 +233,8 @@ class MY_Model extends CI_Model
      * @return void
      * @author Jamie Rumbelow
      */
-    private function _fetch_table()
-    {
-        if ($this->_table == NULL)
-        {
+    private function _fetch_table() {
+        if ($this->_table == NULL) {
             $class = preg_replace('/(_m|_model)?$/', '', get_class($this));
 
             $this->_table = plural(strtolower($class));
