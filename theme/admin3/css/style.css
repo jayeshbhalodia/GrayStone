@@ -1,0 +1,273 @@
+/* 
+    Document   : style
+    Created on : Oct 9, 2011, 11:59:08 AM
+    Author     : karan
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+
+}
+
+/******************************************************/
+/* general */
+/******************************************************/
+hr{
+    margin-bottom:10px;
+}
+
+/******************************************************/
+/* header bottom */
+/******************************************************/
+.header-bottom{
+    height:56px;
+    background:#f5f5f5;
+    margin-bottom:5px;
+    border-bottom:1px solid rgba(0, 0, 0, 0.05);
+    margin-top:42px;
+
+}
+
+/** Shortcut Buttons **/
+#shortcuts {
+    text-align: left;
+    text-decoration: none;
+    color: #666666;
+    overflow:hidden;
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+    background-repeat: repeat-x;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+
+}
+#shortcuts h6 {
+    margin: 0px;
+    padding: 5px 15px 3px 10px;
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+    color: #999999;
+    font-size: 13px;
+    line-height:18px;
+}
+#shortcuts ul,
+#shortcuts li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#shortcuts li {
+    display: inline-block;
+    float: left;
+    border-right: 1px solid #CCCCCC;
+    border-left: 1px solid #fefefe;
+}
+#shortcuts li.hidden {
+    display: none;
+}
+#shortcuts li:first-child {
+    border-left: none;
+}
+#shortcuts li a {
+    display: block;
+    padding:7px 11px;
+    text-align: left;
+    text-decoration: none;
+    color: #666666;
+    vertical-align: middle;
+    -webkit-background-clip: padding-box;
+    font-size:14px;
+
+}
+#shortcuts li a:hover {
+    background-color: #fcfcfc;
+}
+#shortcuts a.add {
+    background:url('../img/admin/icons/16/plus.png') 10px 50% no-repeat;
+    padding-left: 35px;
+}
+
+/** Headers **/
+#page-header {
+	background-color:#F5F5F5;
+	color: #222222;
+	padding: 1px 10px;
+        text-align:right;
+}
+#page-header h1 {
+	font-size:14px;
+	color: #222222;
+	margin: 0;
+	display: inline-block;
+	text-shadow: 0 -1px 0 #000;
+        line-height:18px;
+}
+#page-header a {
+	color: #eef1f4;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 #000;
+}
+#page-header p {
+	font-size: 12px;
+	font-style: italic;
+	margin: 0 0 0 12px;
+	font-weight: normal;
+	display: inline-block;
+}
+
+#page-header-help {
+	float: right;
+}
+
+#page-header-help a {
+	color: #ff6400;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 18px;
+}
+
+/******************************************************/
+/* left side bar */
+/******************************************************/
+.left{
+    width:200px !important;
+}
+
+/* left navigation */
+.left #main-nav ul{
+    list-style:none;
+    margin-left:0px;
+}
+
+.left #main-nav ul li{
+
+}
+
+.left #main-nav ul li a{
+    padding-top:8px;
+    padding-left:10px;
+    padding-bottom:8px;
+    display:block;
+    font-size:14px;
+}
+
+.left #main-nav ul li a:hover{
+    background:#f5f5f5;
+}
+
+.left #main-nav ul li a.current{
+    background:#f5f5f5;
+}
+
+.left #main-nav ul li a.bottom-border{
+    background:#f5f5f5;
+    border-bottom:1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* for sub menu */
+.left #main-nav ul li ul{
+    margin-left:10px;
+}
+
+.left #main-nav ul li ul li a{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+.left #main-nav ul li ul li a:hover{
+    background:#ffffff;
+}
+
+/******************************************************/
+/* right side bar */
+/******************************************************/
+.right{
+    margin-left:210px !important;
+}
+
+.maincontent{
+    width:97.75%;
+}
+
+/******************************************************/
+/* Tabel */
+/******************************************************/
+table {
+	width: 100%;
+	border-collapse: separate;
+}
+table th,
+table td {
+	padding: 8px;
+	vertical-align: middle;
+}
+
+table thead th {
+	font-weight: bold;
+	font-size: 14px;
+	border-bottom: 1px solid #c2c2c2;
+	text-align: left;
+}
+table thead th.checkboxes {
+	width: 18px;
+}
+table tfoot td {
+	padding: 0;
+	border-bottom: 1px solid #DDDDDD;
+}
+table tbody tr.alt {
+	background-color: #F3F3F3;
+}
+
+/** Icons **/
+a.edit-icon {
+	background-image: url('../img/admin/icons/16/pencil.png');
+	text-indent: -99999px;
+	overflow: hidden;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+a.delete-icon {
+	background-image: url('../img/admin/icons/16/cross.png');
+	text-indent: -99999px;
+	overflow: hidden;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+a.add-icon {
+	background-image: url('../img/admin/icons/16/plus.png');
+	text-indent: -99999px;
+	overflow: hidden;
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+}
+
+table.borderless th + th, table td + td{
+    border-left:none;
+}
+
+/******************************************************/
+/* Form */
+/******************************************************/
+form{
+    margin:0;
+}
+
+/******************************************************/
+/* pagination */
+/******************************************************/
+.pagination{
+    margin:0;
+    margin-left:30%;
+}

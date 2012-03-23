@@ -1,0 +1,205 @@
+#treeMenu ul { 
+    list-style:none;
+}
+#treeMenu ul li {
+    overflow:hidden;
+    border-bottom:1px solid #CCCCCC; 
+    border-top:1px solid #FFFFFF;
+    width:98%;
+}
+
+
+#treeMenu ul li span { 
+    display:inline-block; 
+    float:right; 
+    width:30px;
+    height:30px; 
+    background:url(../images/treeSplit.png) no-repeat 100% 0;
+    cursor:pointer;
+}
+
+#treeMenu ul li a { 
+    color:#4B4F5D;
+    padding:10px 20px 12px 30px; 
+    display:inline-block; 
+    text-decoration:none; 
+    float:left; 
+    font-weight:bold;
+    text-shadow:0 1px 0 #FFFFFF;    
+
+}
+#treeMenu ul li span.opened { 
+    background-position:100% -61px;
+}
+
+#treeMenu ul li div { 
+    clear:both;
+    height:auto; 
+}
+#treeMenu ul li li { 
+    padding-left:35px; 
+    border-bottom:solid 1px #CCCCCC; 
+    border-top:solid 1px #FFFFFF; 
+    clear:both;
+}
+#treeMenu ul li li a {
+    color:#626262; 
+    font-size:12px;
+    padding:5px 0;
+    float:left; 
+    width:auto;
+}
+#treeMenu ul li li a:hover
+{
+    color:#333;
+}
+#treeMenu ul li li span { 
+    float:left; 
+    display:inline;
+    width:15px; 
+    height:20px; 
+    background-position:-10px -263px; 
+    cursor:default; 
+}
+#treeMenu ul li li span.closed {
+    background-position:-10px -131px; 
+    cursor:pointer;
+}
+#treeMenu ul li li span.closed.opened {
+    background-position:-7px -197px; 
+}
+
+#treeMenu ul li li li { 
+    border:0;
+}
+
+.clear{
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.block{
+    display:inline;
+    float: left;
+    position: relative;
+}
+
+.fbox1{
+    width:237px;
+    display:inline;
+    float: left;
+    position: relative;
+}
+
+.small{
+    width:70px;
+}
+
+.medium{
+    width:196px;
+}
+
+.large{
+    width:300px;
+}
+
+.aleft{
+    text-align:left;
+}
+
+.aright{
+    text-align:right;
+}
+
+.acenter{
+    text-align:center;
+}
+
+#shortcuts {
+    background-color: #FFF;
+    border: 1px solid #DDDDDD;
+    color: #666666;
+    text-align: left;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+#shortcuts h6 {
+    color: #999999;
+    display: inline-block;
+    float: right;
+    font-size: 13px;
+    margin: 0;
+    padding: 5px 15px 3px 10px;
+    vertical-align: middle;
+}
+#shortcuts ul, #shortcuts li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+
+}
+#shortcuts li:first-child {
+    border-left: medium none;
+}
+#shortcuts li {
+    border-left: 1px solid #FEFEFE;
+    border-right: 1px solid #CCCCCC;
+    display: inline-block;
+    float: left;
+}
+#shortcuts ul, #shortcuts li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#shortcuts a.add {
+    background: url("../images/plus.png") no-repeat scroll 10px 50%;
+    padding-left: 35px;
+}
+
+#shortcuts li a {
+    color: #666666;
+    display: block;
+    padding: 5px 10px;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: middle;
+    font-size:14px;
+}
+
+.boxinner{
+    margin:0px !important;
+}
+
+/* tabs */
+.tabs {
+/*    border-bottom: 1px solid #8DB2E3;*/
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0;
+    padding:11px 0 0 9px;
+    overflow: hidden;
+}
+
+.tabs li {
+    border:1px solid #D3D3D3;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: inline-block;
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 4px;
+    padding:5px 23px 2px;
+    position: relative;
+    background:#F2F2F2;
+}
+
+.tabs li a{
+    font-size:14px;
+}
+
